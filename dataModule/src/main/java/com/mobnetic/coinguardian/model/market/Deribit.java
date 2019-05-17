@@ -12,6 +12,8 @@ import com.mobnetic.coinguardian.model.CurrencyPairInfo;
 import com.mobnetic.coinguardian.model.Market;
 import com.mobnetic.coinguardian.model.Ticker;
 
+import com.mobnetic.coinguardian.util.TimeUtils;
+
 public class Deribit extends Market {
 
     private final static String NAME = "Deribit";
@@ -40,7 +42,7 @@ public class Deribit extends Market {
         ticker.bid = result.getDouble("bidPrice");
         ticker.ask = result.getDouble("askPrice");
 
-        String base = instrumentName.substring(0, 3).toLowerString();
+        String base = instrumentName.substring(0, 3).toLowerCase();
         String captalisedBase = base.substring(0, 1).toUpperCase() + base.substring(1);
         ticker.vol = result.getDouble("volume" + captalisedBase);
         if (!result.isNull("high")) {
